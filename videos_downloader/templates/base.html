@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FYAVD | Free Youtube Audio Video Downloader</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/app.css' %}" rel="stylesheet" />
+    
+  </head>
+  <body>
+
+
+    <!--- NAVBAR -->
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 backdrop" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container d-flex justify-content-center"><a class="navbar-brand d-flex align-items-center fw-semi-bold fs-3" href="#">
+            <div class="text-primary font-base">FYAVD</div>
+        </a>
+      </nav>
+
+      {% block content %} 
+      {% endblock %}
+
+    
+      <hr />
+      <!-- Foooter -->
+        <div class="container">
+          <div class="row flex-center">
+            <div class="col-auto p-2">
+              <p class="text-center">Copyright &copy; FYAVD 2021</p>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+    
+
+
+
+
+    
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/is.min.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    {% block jscript %} 
+    {%endblock%}
+  </body>
+
+</html>

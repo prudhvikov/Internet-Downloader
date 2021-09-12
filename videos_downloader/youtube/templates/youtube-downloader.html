@@ -1,0 +1,166 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block content %}
+
+  <!-- MAIN SECTION -->
+  <section class="py-0" id="home" >
+    <div class="container">
+      <div class="row justify-content-center min-vh-md-75">
+        <div class="col-md-6 col-lg-6 py-6 text-sm-start text-center">
+          <h1 class="mt-6 mb-sm-4 display-4 fw-semi-bold lh-sm fs-4 fs-lg-6 fs-xxl-7">Free Youtube<br class="d-block d-lg-none d-xl-block" />Audio Video Downloader</h1>
+    
+          <div class="pt-3">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="input-group w-xl-75 w-xxl-75 d-flex input-block flex-end-center">
+                <input class="form-control font-base" name="url" type="text" placeholder="Paste Youtube link here" style="padding: 8px; border-radius: 0px !important; border : none;"/>
+                <input type="submit" value="Download" id="dwnlod" style="padding: 8px;margin-left: 8px;border: none;background-color: #F1EAF3;color: #723182;">
+              </div>
+            </form>
+          </div> <!--FORM -->
+          
+          <div class="animation-block">
+            <div class="spinner-grow text-primary" role="status">
+            </div>
+            <div class="spinner-grow text-secondary" role="status">
+            </div>
+            <div class="spinner-grow text-success" role="status">
+            </div>
+            <div class="spinner-grow text-danger" role="status">
+            </div>
+          </div> <!--ANIMATION BLOCK -->
+
+
+          <div class="result">
+
+            {% if messages %}
+            <ul class="messages mt-4">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+
+          {% else %}
+
+            {% if yobj %}
+
+            <h1 class="mt-4">{{yobj.title}}</h1>   
+
+            <table class="table mt-4">
+              <thead class="thead-light">
+              <tr>
+                  <th scope="col">quality</th>
+                  <th scope="col">File Size</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Download</th>
+              </tr>
+              </thead>
+
+            <h1 class="mt-4">Download Files Here...</h1>
+              {% for i in video_streams %}
+                  <tbody style=" color: black;">
+                  <tr>
+                      <th scope="row">{{ i.resolution }}</th>
+                      <td>{{ i.filesize|filesizeformat }}</td>
+                      <td>{{ i.type }}</td>
+                      <td><a href="{{ i.url }}" target="new"><strong
+                              style="color: lime;">Download</strong></a></td>
+                  </tr>
+                  </tbody>
+              {% endfor %} 
+              {% for j in audio_streams %}
+                  <tbody style=" color: black;">
+                  <tr>
+                      <th scope="row">{{ j.abr }}</th>
+                      <td>{{ j.filesize|filesizeformat }}</td>
+                      <td>{{ j.type }}</td>
+                      <td><a href="{{ j.url }}" target="new"><strong
+                              style="color: lime;">Download</strong></a></td>
+                  </tr>
+                  </tbody>
+              {% endfor %}
+          </table>
+  
+          {% endif %}
+          {% endif %}
+
+          </div> <!-- RESULT -->
+        </div>   <!--LEFT COLUMN--> 
+      </div> <!--ROW -->
+    </div>  <!--CONTAINER-->
+  </section> <!--SECTION -->
+  
+
+
+
+
+  <!-- BODY -->
+  <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-auto mb-4">
+          <h1 class="fw-semi-bold text-primary">Why To Use FYAVD</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0 text-center">
+          <div class="px-0 px-lg-3"><img class="img-fluid mb-4" src="{% static 'images/cash.svg' %}" width="100" alt="..." />
+            <h3 class="h5 mb-4 font-base">Free to use</h3>
+            <p class="lh-lg">By using FYAVD you can download unlimited videos and audio files for free.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0 text-center">
+          <div class="px-0 px-lg-3"><img class="img-fluid mb-4" src="{% static 'images/person-x-fill.svg' %}" width="100" alt="..." />
+            <h3 class="h5 mb-4 font-base">No registration required</h3>
+            <p class="lh-lg">You don't need to log in or register to download youtube videos and audio files.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0 text-center">
+          <div class="px-0 px-lg-3"><img class="img-fluid mb-4" src="{% static 'images/cloud-download-fill.svg' %}" width="100" alt="..." />
+            <h3 class="h5 mb-4 font-base">Faster downloader</h3>
+            <p class="lh-lg">By using FYAVD you can download videos and audio files with lightning speed.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0 text-center">
+          <div class="px-0 px-lg-3"><img class="img-fluid mb-4" src="{% static 'images/check-circle-fill.svg' %}" width="100" alt="..." />
+            <h3 class="h5 mb-4 font-base">Browser Compatibility</h3>
+            <p class="lh-lg">FYAVD is fully compatible with the latest browsers like Chrome, Firefox, Safari, etc.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-auto mt-4">
+          <h1 class="fw-semi-bold text-primary">How to Download YouTube Videos?</h1>
+            <p class="mt-4">1.Open Youtube and copy the Youtube video URL you want to download.</p>
+            <p>2.Paste the Youtube video URL in the Search box</p>
+            <p>3.Select the (Video/Audio) format you need and click the "Download" button.</p>
+        </div>
+      </div>
+     
+        </div>
+      </div>
+    </div>
+{%endblock%}
+
+{% block jscript%} 
+  <script>
+  $(document).ready(function(){
+    
+  $('#dwnlod').click(function(e){
+    
+    $(".animation-block").show();
+    $(".result").css("display","none");
+  
+  }); // download button closing
+
+  });  //Document Closing Function
+  </script> 
+{%endblock%}
