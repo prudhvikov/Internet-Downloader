@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import django_heroku
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,7 +10,7 @@ SECRET_KEY = 'django-insecure-isl9%5ck!&*e1nq4s6f6()csgtkt+kyw3(p-4ie#+ru&d&0eio
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -92,6 +93,7 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
@@ -103,3 +105,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+django_heroku.settings(locals())
+
